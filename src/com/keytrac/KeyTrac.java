@@ -18,7 +18,16 @@ import java.io.IOException;
  */
 public class KeyTrac extends ActionSupport{
     private String record = "";
+    private String text = "";
     private String downloadURL = "";
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public String getDownloadURL() {
         return downloadURL;
@@ -40,7 +49,6 @@ public class KeyTrac extends ActionSupport{
         String path = getWebRootPath();
         final String filename = "record/test.csv";
         downloadURL = filename;
-
         try {
             File file = new File(path+filename);
             FileOutputStream fos = new FileOutputStream(file);
@@ -54,7 +62,6 @@ public class KeyTrac extends ActionSupport{
             e.printStackTrace();
             downloadURL = "error.jsp";
         }
-
         return SUCCESS;
     }
 
