@@ -11,6 +11,11 @@
                 <param name="root">downloadURL</param>
             </result>
         </action>
+        <action name="loadRandomText" class="com.keytrac.action.KeyTrac" method="loadRandomText">
+            <result type="json" name="success">
+                <param name="root">list</param>
+            </result>
+        </action>
     </package>
 
 </struts>

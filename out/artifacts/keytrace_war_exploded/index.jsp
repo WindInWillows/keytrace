@@ -22,15 +22,18 @@
 
 
 <div style="margin: 20px;">
+    <p class="random-text"></p>
   <textarea style="ime-mode:disabled" id="text-input0" rows="8" cols="150" onkeydown="keyAction(0,0)" onkeyup="keyAction(1,0)"> </textarea>
   <br /><br />
+    <p class="random-text"></p>
   <textarea style="ime-mode: disabled" id="text-input1" rows="8" cols="150" onkeydown="keyAction(0,1)" onkeyup="keyAction(1,1)"></textarea>
   <br /><br />
+    <p class="random-text"></p>
   <textarea style="ime-mode: disabled" id="text-input2" rows="8" cols="150" onkeydown="keyAction(0,2)" onkeyup="keyAction(1,2)"></textarea>
   <br /><br />
   <button type="button" class="btn btn-primary" id="download-btn">保存到文件</button>
   <br />
-
+<input type="hidden" id="random-key" value=""/>
 </div>
 
 <div class="show-div" style="margin: 20px;">
@@ -68,12 +71,10 @@
 
   var downloadFile = function (record) {
     var res = "";
-    record.forEach(function (v) {
-      res+=v;
-    })
+    record.forEach(function (v) {res+=v;})
     $.post("downloadFile",
       {
-        text:$("#text-input").val(),
+        ran:$("#random-key").val(),
         record:res,
       },
       function (data) {
@@ -82,7 +83,21 @@
     );
   }
 
+  var load_random_text = function () {
+    $.post("loadRandomText",{},function (data) {
+        var ps = $(".random-text");
+        for(var i=0;i<ps.length;i++) {
+            $(ps[i]).text(data[i]);
+        }
+    });
+  }
+
   $(document).ready(function () {
+
+      $("#random-key").val(parseInt(Math.random()*10000));
+
+
+      load_random_text();
     $("#download-btn").click(function () {
       downloadFile(record);
     });

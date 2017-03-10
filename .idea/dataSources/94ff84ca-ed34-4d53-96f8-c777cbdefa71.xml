@@ -14,24 +14,37 @@
     <schema id="9" name="sys"/>
     <schema id="10" name="world"/>
     <table id="11" parent="1" name="user"/>
-    <column id="12" parent="11" name="user_id">
+    <table id="12" parent="1" name="random_text"/>
+    <column id="13" parent="11" name="user_id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="13" parent="11" name="user_name">
+    <column id="14" parent="11" name="user_name">
       <mandatory>1</mandatory>
       <data-type>varchar(20)|0</data-type>
     </column>
-    <column id="14" parent="11" name="user_pass_hash">
+    <column id="15" parent="11" name="user_pass_hash">
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="15" parent="11" name="user_file">
+    <column id="16" parent="11" name="user_file">
       <data-type>varchar(40)|0</data-type>
     </column>
-    <key id="16" parent="11" name="PRIMARY">
+    <key id="17" parent="11" name="PRIMARY">
       <columns>user_id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="18" parent="12" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="19" parent="12" name="text">
+      <data-type>varchar(400)|0</data-type>
+    </column>
+    <key id="20" parent="12" name="PRIMARY">
+      <columns>id</columns>
       <primary>1</primary>
     </key>
   </database-model>
