@@ -11,6 +11,26 @@
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <style>
+    .entered {
+      font-size: larger;
+      color: #d9edf7;
+      background-color: rgba(212, 165, 66, 0.9);
+    }
+    .full {
+      font-size: larger;
+      color: #d9edf7;
+      background-color: rgba(0, 100, 0, 0.7);
+
+    }
+    .overflow {
+      font-size:larger;
+      color: #d9edf7;
+      background-color: rgba(255, 0, 0, 0.7);
+    }
+  </style>
+
 </head>
 
 <body>
@@ -22,14 +42,14 @@
 
 
 <div style="margin: 20px;">
-    <p class="random-text"></p>
-  <textarea style="ime-mode:disabled" id="text-input0" rows="8" cols="150" onkeydown="keyAction(0,0)" onkeyup="keyAction(1,0)"> </textarea>
+    <p class="random-text" ><span class="entered"></span><span class="unentered"></span></p>
+  <textarea class="input-area" style="ime-mode:disabled" id="text-input0" rows="8" cols="150" onkeydown="keyAction(0,0)" onkeyup="keyAction(1,0)"> </textarea>
   <br /><br />
-    <p class="random-text"></p>
-  <textarea style="ime-mode: disabled" id="text-input1" rows="8" cols="150" onkeydown="keyAction(0,1)" onkeyup="keyAction(1,1)"></textarea>
+    <p class="random-text" ><span class="entered"></span><span class="unentered"></span></p>
+  <textarea class="input-area" style="ime-mode: disabled" id="text-input1" rows="8" cols="150" onkeydown="keyAction(0,1)" onkeyup="keyAction(1,1)"></textarea>
   <br /><br />
-    <p class="random-text"></p>
-  <textarea style="ime-mode: disabled" id="text-input2" rows="8" cols="150" onkeydown="keyAction(0,2)" onkeyup="keyAction(1,2)"></textarea>
+    <p class="random-text" ><span class="entered"></span><span class="unentered"></span></p>
+  <textarea class="input-area" style="ime-mode: disabled" id="text-input2" rows="8" cols="150"  onkeydown="keyAction(0,2)" onkeyup="keyAction(1,2)"></textarea>
   <br /><br />
   <button type="button" class="btn btn-primary" id="download-btn">保存到文件</button>
   <br />
@@ -59,6 +79,27 @@
     return ans;
   }
 
+  var updateText = function (event) {
+    var t = $(event.target);
+    var p = $(t).prev();
+    var span = $(p).children();
+    var raw = $(span[0]).text()+$(span[1]).text();
+    var entered = $(t).val();
+    if(raw.length > entered.length) {
+      $(span[0]).attr("class","entered");
+      $(span[0]).text(raw.substr(0,entered.length));
+      $(span[1]).text(raw.substr(entered.length));
+    } else if(raw.length == entered.length) {
+      $(span[0]).text(raw);
+      $(span[0]).attr("class","full");
+      $(span[1]).text("");
+    } else {
+      $(span[0]).text(raw);
+      $(span[0]).attr("class","overflow");
+      $(span[1]).text("");
+    }
+  }
+
   var keyAction = function(a,t) {
     var e = event || window.event || arguments.callee.caller.arguments[0];
     var d = new Date();
@@ -66,6 +107,7 @@
     var newspan = $("<span></span><br />").text(str);
     $("#show-head").append(newspan);
     record[t] += str;
+    if(a==1) updateText(e);
   }
 
 
@@ -87,7 +129,7 @@
     $.post("loadRandomText",{},function (data) {
         var ps = $(".random-text");
         for(var i=0;i<ps.length;i++) {
-            $(ps[i]).text(data[i]);
+            $($(ps[i]).children()[1]).text(data[i]);
         }
     });
   }
@@ -101,6 +143,7 @@
     $("#download-btn").click(function () {
       downloadFile(record);
     });
+
   });
 
 </script>
