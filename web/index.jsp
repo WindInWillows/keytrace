@@ -7,14 +7,20 @@
   <meta charset="utf-8">
 
   <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-  <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="js/toggle/css/bootstrap3/bootstrap-switch.min.css" >
-  <script src="js/toggle/js/bootstrap-switch.min.js" ></script>
   <script src="js/md5.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+
+  <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+          integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+          crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/normalize.css">
+
+  <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+
   <style>
     .entered {
       font-size: larger;
@@ -43,8 +49,9 @@
   <p>请在下面的文本框中输入！</p>
 </div>
 
-<div class="switch switch-large" style="margin: 20px;">
-  <button id="toggle" class="btn btn-primary">toggle</button>
+<div class="try-out__solution-switch-trigger">
+  <div class="switch"><input class='tgl tgl-ios' id='toggle' type='checkbox'>
+    <label class='tgl-btn' for='toggle'></label></div>
 </div>
 
 <jsp:include page="signup.jsp" />
