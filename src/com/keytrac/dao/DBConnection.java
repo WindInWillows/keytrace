@@ -6,7 +6,7 @@ import java.sql.*;
 public class DBConnection {
     private static String dbName = "keytrace";
     private static String user = "root";
-    private static String password = "994599";
+    private static String password = "google";
     private static String parameter = "?characterEncoding=utf8";
     private static String dburl = "jdbc:mysql://localhost:3306/";
 

@@ -11,6 +11,9 @@
     <form >
         <div id="alert-has" class="alert alert-danger" role="alert" hidden>用户名已被注册！</div>
         <div id="alert-suc" class="alert alert-success" role="alert" hidden>注册成功！正在跳转...</div>
+        <div id="alert-err" class="alert alert-danger" role="alert" hidden>注册失败！密码由a-zA-Z0-9组成，长度6－20位！</div>
+        <div id="alert-neq" class="alert alert-danger" role="alert" hidden>两次密码输入的不一致，请重新输入！</div>
+        <div id="alert-req" class="alert alert-danger" role="alert" hidden>注册失败！用户名由a-zA-Z0-9_组成，长度3－12位！</div>
 
         <div class="form-group">
             <label for="input-name">用户名</label>
@@ -64,30 +67,54 @@ var passKeyAction = function(a,t) {
 $(document).ready(function () {
 
     $("#btn-signup").click(function () {
+        var username = $("#input-name").val();
         var pass1 = $("#input-pass1").val();
         var pass2 = $("#input-pass2").val();
-        if(pass1==pass2) {
+        if(username.length<3 || username.length>12 || !username.match("[a-zA-Z0-9_]+")){
+            var flag1=0;
+            $("#alert-req").show();
+            setTimeout(function () {
+                $("#alert-req").hide();
+            },2000);
+        }
+        if(pass1.length<6 || pass1.length>20 || !pass1.match("[a-zA-Z0-9]+")){
+            var flag2=0;
+            $("#alert-err").show();
+            setTimeout(function () {
+                $("#alert-err").hide();
+            },2000);
+        }
+        if(pass2!=pass1){
+            var flag3=0;
+            $("#alert-neq").show();
+            setTimeout(function () {
+                $("#alert-neq").hide();
+            },2000);
+        }
+        if(flag1!=0 && flag2!=0 && flag3!=0) {
             var res = "";
-            pass_record.forEach(function (v) {res+=v;})
+            pass_record.forEach(function (v) {
+                res += v;
+            })
             $.post("signup",
                 {
-                    user_name:$("#input-name").val(),
-                    user_pass:pass1,
-                    pass_record:res,
+                    user_name: username,
+                    user_pass: pass1,
+                    pass_record: res,
                 },
                 function (data) {
-                    if(data.length>0) {
+                    if (data.length > 0) {
                         $("#alert-suc").show();
                         setTimeout(function () {
                             $("#alert-suc").hide();
                             toggle(1);
-                        },2000);
+                        }, 2000);
                     }
                     else {
                         $("#alert-has").show();
                         setTimeout(function () {
                             $("#alert-has").hide();
-                        },2000)
+                        }, 2000)
                     }
                 }
             );
