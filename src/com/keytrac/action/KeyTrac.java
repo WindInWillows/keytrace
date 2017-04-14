@@ -9,13 +9,10 @@ import javax.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Created by zhao on 2017/2/25.
@@ -25,7 +22,46 @@ public class KeyTrac extends ActionSupport{
     private String record = "";
     private String ran = "";
     private String downloadURL = "";
+    private static final String PATH = "record/";
+    private String datazip = "";
     final int NUM = 3;
+    private final static String ZIP_OUT = getWebRootPath()+"data/alldata.zip";
+
+    private String user_name = "";
+    private String user_pass = "";
+    private String pass_record = "";
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getUser_pass() {
+        return user_pass;
+    }
+
+    public void setUser_pass(String user_pass) {
+        this.user_pass = user_pass;
+    }
+
+    public String getPass_record() {
+        return pass_record;
+    }
+
+    public void setPass_record(String pass_record) {
+        this.pass_record = pass_record;
+    }
+
+    public String getDatazip() {
+        return datazip;
+    }
+
+    public void setDatazip(String datazip) {
+        this.datazip = datazip;
+    }
 
     public String getRan() {
         return ran;
@@ -61,9 +97,19 @@ public class KeyTrac extends ActionSupport{
         this.record = record;
     }
 
+    public static void main(String[] args) {
+
+    }
+
+    public static String generateFileName() {
+        Date date = new Date();
+        return PATH + System.currentTimeMillis()+new Random().nextInt(100)+".csv";
+    }
+
+
     public String downloadFile() {
         String path = getWebRootPath();
-        final String filename = "record/test"+ran+".csv";
+        final String filename = generateFileName();
         downloadURL = filename;
         try {
             File file = new File(path+filename);
@@ -71,17 +117,19 @@ public class KeyTrac extends ActionSupport{
             fos.write(record.getBytes());
             fos.flush();
             fos.close();
+            dao.saveFile(filename);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            downloadURL = "error.jsp";
+            downloadURL = "";
         } catch (IOException e) {
             e.printStackTrace();
-            downloadURL = "error.jsp";
+            downloadURL = "";
         }
+
         return SUCCESS;
     }
 
-    private String getWebRootPath() {
+    private static String getWebRootPath() {
         ActionContext actionContext = ActionContext.getContext();
         ServletContext servletContext = (ServletContext)actionContext.get(ServletActionContext.SERVLET_CONTEXT);
         String rootPath = servletContext.getRealPath("/");
@@ -92,6 +140,58 @@ public class KeyTrac extends ActionSupport{
         for(int i=0;i<NUM;i++) {
             list.add(dao.getRandomText());
         }
+        return "success";
+    }
+
+    public String downloadData() {
+        String head = getWebRootPath();
+        File dir = new File(head+PATH);
+        if(compress(dir)) {
+            File f = new File(ZIP_OUT);
+            datazip = "data/"+f.getName();
+            return SUCCESS;
+        }
+        return ERROR;
+    }
+
+    private boolean compress(File dir) {
+        File zipfile = new File(ZIP_OUT);
+        try {
+            ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipfile));
+            if(dir.isDirectory()) {
+                File[] files = dir.listFiles();
+                for (File file:files){
+                    byte[] buf = new byte[1024*10];
+                    InputStream input = new FileInputStream(file);
+                    zos.putNextEntry(new ZipEntry(file.getName()));
+                    int len;
+                    while((len = input.read(buf)) != -1){
+                        zos.write(buf, 0, len);
+                    }
+                    input.close();
+                }
+            }
+            zos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public String signup() throws Exception {
+        boolean res = dao.signup(user_name, user_pass, pass_record);
+        if(res)
+            record="success";
+        else record = "";
+        return SUCCESS;
+    }
+
+    public String login() throws Exception {
+        record = dao.login(user_name,user_pass,pass_record);
         return "success";
     }
 }

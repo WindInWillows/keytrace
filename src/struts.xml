@@ -11,11 +11,29 @@
                 <param name="root">downloadURL</param>
             </result>
         </action>
+
         <action name="loadRandomText" class="com.keytrac.action.KeyTrac" method="loadRandomText">
             <result type="json" name="success">
                 <param name="root">list</param>
             </result>
         </action>
+
+        <action name="downloadData" class="com.keytrac.action.KeyTrac" method="downloadData">
+            <result name="success">/download.jsp</result>
+        </action>
+
+        <action name="signup" class="com.keytrac.action.KeyTrac" method="signup">
+            <result type="json" name="success">
+                <param name="root">record</param>
+            </result>
+        </action>
+
+        <action name="login" class="com.keytrac.action.KeyTrac" method="login">
+            <result type="json" name="success">
+                <param name="root">record</param>
+            </result>
+        </action>
+
     </package>
 
 </struts>

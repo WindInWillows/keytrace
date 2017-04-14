@@ -1,51 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="MySQL - keytrace@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
-    <schema id="1" name="keytrace">
-      <visible>1</visible>
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="keytrace">
+      <Current>1</Current>
+      <Visible>1</Visible>
     </schema>
-    <schema id="2" name="classroom"/>
-    <schema id="3" name="disk"/>
-    <schema id="4" name="information_schema"/>
-    <schema id="5" name="mysql"/>
-    <schema id="6" name="performance_schema"/>
-    <schema id="7" name="postgraduate"/>
-    <schema id="8" name="sakila"/>
-    <schema id="9" name="sys"/>
-    <schema id="10" name="world"/>
-    <table id="11" parent="1" name="user"/>
-    <table id="12" parent="1" name="random_text"/>
-    <column id="13" parent="11" name="user_id">
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
-      <sequence-identity>1</sequence-identity>
+    <schema id="3" parent="1" name="classroom"/>
+    <schema id="4" parent="1" name="disk"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="performance_schema"/>
+    <schema id="8" parent="1" name="postgraduate"/>
+    <schema id="9" parent="1" name="sakila"/>
+    <schema id="10" parent="1" name="sys"/>
+    <schema id="11" parent="1" name="world"/>
+    <table id="12" parent="2" name="random_text"/>
+    <table id="13" parent="2" name="record"/>
+    <table id="14" parent="2" name="user"/>
+    <table id="15" parent="2" name="user_text_record"/>
+    <column id="16" parent="12" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="14" parent="11" name="user_name">
-      <mandatory>1</mandatory>
-      <data-type>varchar(20)|0</data-type>
+    <column id="17" parent="12" name="text">
+      <Position>2</Position>
+      <DataType>varchar(400)|0</DataType>
     </column>
-    <column id="15" parent="11" name="user_pass_hash">
-      <mandatory>1</mandatory>
-      <data-type>varchar(40)|0</data-type>
-    </column>
-    <column id="16" parent="11" name="user_file">
-      <data-type>varchar(40)|0</data-type>
-    </column>
-    <key id="17" parent="11" name="PRIMARY">
-      <columns>user_id</columns>
-      <primary>1</primary>
+    <key id="18" parent="12" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <column id="18" parent="12" name="id">
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
-      <sequence-identity>1</sequence-identity>
+    <column id="19" parent="13" name="f_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="19" parent="12" name="text">
-      <data-type>varchar(400)|0</data-type>
+    <column id="20" parent="13" name="name">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <key id="20" parent="12" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <key id="21" parent="13" name="PRIMARY">
+      <ColNames>f_id</ColNames>
+      <Primary>1</Primary>
     </key>
+    <column id="22" parent="14" name="user_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="23" parent="14" name="user_name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="14" name="user_pass_hash">
+      <Position>3</Position>
+      <DataType>varchar(40)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="14" name="user_pass_record">
+      <Position>4</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <key id="26" parent="14" name="PRIMARY">
+      <ColNames>user_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="27" parent="15" name="user_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="28" parent="15" name="record">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+    </column>
   </database-model>
 </dataSource>

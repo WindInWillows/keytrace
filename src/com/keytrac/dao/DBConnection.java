@@ -9,7 +9,6 @@ public class DBConnection {
     private static String password = "994599";
     private static String parameter = "?characterEncoding=utf8";
     private static String dburl = "jdbc:mysql://localhost:3306/";
-//    private static String dburl = "jdbc:mysql://kaaceuoanizf.mysql.sae.sina.com.cn:10592/";
 
     private static String url  = dburl + dbName +parameter;
     private static Statement stmt = null;
