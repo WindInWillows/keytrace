@@ -24,7 +24,7 @@ public class KeyTrac extends ActionSupport{
     private String downloadURL = "";
     private static final String PATH = "record/";
     private String datazip = "";
-    final int NUM = 3;
+    final int NUM = 2;
     private final static String ZIP_OUT = getWebRootPath()+"data/alldata.zip";
 
     private String user_name = "";
@@ -194,4 +194,10 @@ public class KeyTrac extends ActionSupport{
         record = dao.login(user_name,user_pass,pass_record);
         return "success";
     }
+
+    public String learnPattern() throws Exception {
+        ActionContext.getContext().getSession().put("record",record);
+        return "success";
+    }
+
 }

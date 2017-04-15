@@ -95,7 +95,7 @@ public class Dao {
             ps.setString(2, user_pass);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                String pass_rec = rs.getString("user_name");
+                String pass_rec = rs.getString("user_pass_record");
                 String pass = rs.getString("user_pass_hash");
                 double a = comparePass(pass_record,pass_rec, pass);
                 res += a;

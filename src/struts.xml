@@ -34,6 +34,10 @@
             </result>
         </action>
 
+        <action name="learnPattern" class="com.keytrac.action.KeyTrac" method="learnPattern">
+            <result name="success">/freetext_judge.jsp</result>
+        </action>
+
     </package>
 
 </struts>
