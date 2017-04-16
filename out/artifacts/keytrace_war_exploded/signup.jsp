@@ -73,23 +73,20 @@ $(document).ready(function () {
         if(username.length<3 || username.length>12 || !username.match("[a-zA-Z0-9_]+")){
             var flag1=0;
             $("#alert-req").show();
-            setTimeout(function () {
-                $("#alert-req").hide();
-            },2000);
+        }else{
+            $("#alert-req").hide();
         }
         if(pass1.length<6 || pass1.length>20 || !pass1.match("[a-zA-Z0-9]+")){
             var flag2=0;
             $("#alert-err").show();
-            setTimeout(function () {
-                $("#alert-err").hide();
-            },2000);
+        }else{
+            $("#alert-err").hide();
         }
         if(pass2!=pass1){
             var flag3=0;
             $("#alert-neq").show();
-            setTimeout(function () {
-                $("#alert-neq").hide();
-            },2000);
+        }else{
+            $("#alert-neq").hide();
         }
         if(flag1!=0 && flag2!=0 && flag3!=0) {
             var res = "";
@@ -104,6 +101,7 @@ $(document).ready(function () {
                 },
                 function (data) {
                     if (data.length > 0) {
+                        $("#alert-has").hide();
                         $("#alert-suc").show();
                         setTimeout(function () {
                             $("#alert-suc").hide();
@@ -112,9 +110,6 @@ $(document).ready(function () {
                     }
                     else {
                         $("#alert-has").show();
-                        setTimeout(function () {
-                            $("#alert-has").hide();
-                        }, 2000)
                     }
                 }
             );
