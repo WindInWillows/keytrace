@@ -12,28 +12,6 @@
   <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="js/toggle/css/bootstrap3/bootstrap-switch.min.css" >
-  <script src="js/toggle/js/bootstrap-switch.min.js" ></script>
-  <script src="js/md5.min.js"></script>
-  <style>
-    .entered {
-      font-size: larger;
-      color: #d9edf7;
-      background-color: rgba(212, 165, 66, 0.9);
-    }
-    .full {
-      font-size: larger;
-      color: #d9edf7;
-      background-color: rgba(0, 100, 0, 0.7);
-
-    }
-    .overflow {
-      font-size:larger;
-      color: #d9edf7;
-      background-color: rgba(255, 0, 0, 0.7);
-    }
-  </style>
-
 </head>
 
 <body>

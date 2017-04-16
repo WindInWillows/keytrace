@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import javax.servlet.ServletContext;
 
 
+import com.sun.deploy.association.Action;
 import org.apache.struts2.ServletActionContext;
 
 
@@ -30,6 +31,16 @@ public class KeyTrac extends ActionSupport{
     private String user_name = "";
     private String user_pass = "";
     private String pass_record = "";
+
+    private String result = "";
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public String getUser_name() {
         return user_name;
@@ -200,4 +211,14 @@ public class KeyTrac extends ActionSupport{
         return "success";
     }
 
+    public String judgeText() throws Exception {
+        result = dao.judgeText(record, (String) ActionContext.getContext().getSession().get("record"));
+        return "success";
+    }
+
+    public String toJudge() throws Exception {
+        System.out.println(ActionContext.getContext().getSession().get("record"));
+
+        return "success";
+    }
 }

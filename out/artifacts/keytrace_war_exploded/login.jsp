@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <label for="login-pass">密码</label>
-            <input onkeydown="login_passKeyAction()" type="password" class="form-control" id="login-pass" placeholder="密码">
+            <input onkeydown="login_passKeyAction(0)" onkeyup="login_passKeyAction(1)" type="password" class="form-control" id="login-pass" placeholder="密码">
         </div>
 
         <input id="btn-login" class="btn btn-primary" value="登录" />

@@ -105,4 +105,8 @@ public class Dao {
         }
         return res;
     }
+
+    public String judgeText(String a, String b) {
+        return ""+compareText(a,b);
+    }
 }

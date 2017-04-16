@@ -34,6 +34,20 @@
             </result>
         </action>
 
+        <action name="learnPattern" class="com.keytrac.action.KeyTrac" method="learnPattern">
+            <result name="success">/judge_wrapper.jsp</result>
+        </action>
+
+        <action name="judgeText" class="com.keytrac.action.KeyTrac" method="judgeText">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+
+        <action name="toJudge" class="com.keytrac.action.KeyTrac" method="toJudge">
+            <result name="success">/judge_wrapper.jsp</result>
+        </action>
+
     </package>
 
 </struts>
