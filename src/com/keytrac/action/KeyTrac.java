@@ -221,4 +221,16 @@ public class KeyTrac extends ActionSupport{
 
         return "success";
     }
+
+    public String toSignup() throws Exception {
+        return "success";
+    }
+
+    public String toLogin() throws Exception {
+        return "success";
+    }
+
+    public String toFreetext() throws Exception {
+        return "success";
+    }
 }

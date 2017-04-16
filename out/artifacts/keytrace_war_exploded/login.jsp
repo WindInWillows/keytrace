@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div id="login-div" style="padding: 20px; margin: 20px; width: 30%; border: solid 2px #eee" hidden>
+<div id="login-div" style="padding: 20px; margin: 20px; width: 30%; border: solid 2px #eee" >
     <form >
         <div id="alert-no-exist" class="alert alert-danger" role="alert" hidden>用户名不存在！</div>
         <div id="alert-pass-error" class="alert alert-danger" role="alert" hidden>密码错误！</div>

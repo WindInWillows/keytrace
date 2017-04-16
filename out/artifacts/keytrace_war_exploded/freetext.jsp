@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div id="free-text-div" style="margin: 20px; border: solid 2px #eee; width: 80%; padding: 10px;" hidden>
+<div id="free-text-div" style="margin: 20px; border: solid 2px #eee; width: 80%; padding: 10px;" >
     <p class="random-text" ><span class="entered"></span><span class="unentered"></span></p>
     <textarea class="input-area" style="ime-mode:disabled" id="text-input0" rows="8" cols="140" onkeydown="keyAction(0,0)" onkeyup="keyAction(1,0)" <%--onpaste="return false;" --%>></textarea>
     <br /><br />

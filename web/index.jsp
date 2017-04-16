@@ -19,17 +19,22 @@
 <div class="jumbotron" style="margin:20px; width: 80%;">
   <h1>KeyTrace</h1>
   <p>请在下面的文本框中输入！</p>
+
 </div>
 
-<div class="switch switch-large" style="margin: 20px;">
+<button onclick="window.location.href='toSignup'" class="btn btn-primary">注册</button>
+<button onclick="window.location.href='toLogin'" class="btn btn-primary">登录</button>
+<button onclick="window.location.href='toFreetext'" class="btn btn-primary">自由文本</button>
+
+<%--<div class="switch switch-large" style="margin: 20px;">
   <button id="toggle" class="btn btn-primary">toggle</button>
-</div>
+</div>--%>
 
-<jsp:include page="signup.jsp" />
+<%--<jsp:include page="signup.jsp" />
 <jsp:include page="login.jsp" />
-<jsp:include page="freetext.jsp" />
+<jsp:include page="freetext.jsp" />--%>
 
-<div class="show-div" style="margin: 20px;" hidden>
+<%--<div class="show-div" style="margin: 20px;" hidden>
   <span id="show-head">
     键码 毫秒 类型(按下0，松开1)<br />
   </span>
@@ -58,7 +63,7 @@
           }
       });
   })
-</script>
+</script>--%>
 
 </div>
 

@@ -48,6 +48,17 @@
             <result name="success">/judge_wrapper.jsp</result>
         </action>
 
+        <action name="toSignup" class="com.keytrac.action.KeyTrac" method="toSignup">
+            <result name="success">/signup_wrapper.jsp</result>
+        </action>
+
+        <action name="toLogin" class="com.keytrac.action.KeyTrac" method="toLogin">
+            <result name="success">/login_wrapper.jsp</result>
+        </action>
+
+        <action name="toFreetext" class="com.keytrac.action.KeyTrac" method="toFreetext">
+            <result name="success">/freetext_wrapper.jsp</result>
+        </action>
     </package>
 
 </struts>
