@@ -6,10 +6,21 @@
 
 <struts>
     <package name="key" namespace="/" extends="json-default">
-        <action name="downloadFile" class="com.keytrac.action.KeyTrac" method="downloadFile">
-            <result type="json" name="success">
-                <param name="root">downloadURL</param>
-            </result>
+
+        <action name="toJudge" class="com.keytrac.action.KeyTrac" method="toJudge">
+            <result name="success">/freetext_judge.jsp</result>
+        </action>
+
+        <action name="toSignup" class="com.keytrac.action.KeyTrac" method="toSignup">
+            <result name="success">/signup.jsp</result>
+        </action>
+
+        <action name="toLogin" class="com.keytrac.action.KeyTrac" method="toLogin">
+            <result name="success">/login.jsp</result>
+        </action>
+
+        <action name="toFreetext" class="com.keytrac.action.KeyTrac" method="toFreetext">
+            <result name="success">/freetext.jsp</result>
         </action>
 
         <action name="loadRandomText" class="com.keytrac.action.KeyTrac" method="loadRandomText">
@@ -19,6 +30,12 @@
         </action>
 
         <action name="signup" class="com.keytrac.action.KeyTrac" method="signup">
+            <result type="json" name="success">
+                <param name="root">result</param>
+            </result>
+        </action>
+
+        <action name="hasUser" class="com.keytrac.action.KeyTrac" method="hasUser">
             <result type="json" name="success">
                 <param name="root">result</param>
             </result>
@@ -40,21 +57,7 @@
             </result>
         </action>
 
-        <action name="toJudge" class="com.keytrac.action.KeyTrac" method="toJudge">
-            <result name="success">/freetext_judge.jsp</result>
-        </action>
 
-        <action name="toSignup" class="com.keytrac.action.KeyTrac" method="toSignup">
-            <result name="success">/signup.jsp</result>
-        </action>
-
-        <action name="toLogin" class="com.keytrac.action.KeyTrac" method="toLogin">
-            <result name="success">/login.jsp</result>
-        </action>
-
-        <action name="toFreetext" class="com.keytrac.action.KeyTrac" method="toFreetext">
-            <result name="success">/freetext.jsp</result>
-        </action>
     </package>
 
 </struts>

@@ -60,6 +60,18 @@
 
 <script>
     $(document).ready(function () {
+        $("#input-name").blur(function () {
+          $.post("hasUser",
+              {user_name:$(this).val(),},
+          function (result) {
+              alert(result);
+              if(result=="true") {
+                alert("用户名已存在");
+                window.location.href="toSignup";
+              }
+          });
+        });
+        
         $("#btn-signup").click(function () {
             var pass1 = $("#input-pass1").val();
             var pass2 = $("#input-pass2").val();

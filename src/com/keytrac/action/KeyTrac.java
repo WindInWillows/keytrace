@@ -126,4 +126,9 @@ public class KeyTrac extends ActionSupport{
     public String toFreetext() throws Exception {
         return "success";
     }
+
+    public String hasUser() throws Exception {
+        result = dao.hasUser(user_name);
+        return "success";
+    }
 }

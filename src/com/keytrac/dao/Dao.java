@@ -96,4 +96,21 @@ public class Dao {
     public String judgeText(String a, String b) {
         return ""+compareText(a,b);
     }
+
+    public String hasUser(String user_name) {
+        con = dbConnection.getConnection();
+        PreparedStatement ps = null;
+        String sql = "SELECT * FROM user where user_name=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, user_name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return "true";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "false";
+    }
 }
