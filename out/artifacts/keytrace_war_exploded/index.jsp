@@ -26,45 +26,6 @@
 <button onclick="window.location.href='toLogin'" class="btn btn-primary">登录</button>
 <button onclick="window.location.href='toFreetext'" class="btn btn-primary">自由文本</button>
 
-<%--<div class="switch switch-large" style="margin: 20px;">
-  <button id="toggle" class="btn btn-primary">toggle</button>
-</div>--%>
-
-<%--<jsp:include page="signup.jsp" />
-<jsp:include page="login.jsp" />
-<jsp:include page="freetext.jsp" />--%>
-
-<%--<div class="show-div" style="margin: 20px;" hidden>
-  <span id="show-head">
-    键码 毫秒 类型(按下0，松开1)<br />
-  </span>
-</div>
-
-<script type="text/javascript">
-
-  var toggle = function (n) {
-      var objs = [$("#sign-up-div"),$("#login-div"),$("#free-text-div")];
-      for (var i=0; i<objs.length;i++) {
-          if(i==n){
-              objs[i].show();
-          } else {
-              objs[i].hide();
-          }
-      }
-  }
-  $(document).ready(function () {
-      var tog = 0;
-      $("#toggle").click(function () {
-          tog++;
-          if(tog%2==0) {
-              toggle(0);
-          } else {
-              toggle(2);
-          }
-      });
-  })
-</script>--%>
-
 </div>
 
 </body>

@@ -45,19 +45,6 @@ public class Dao {
         return "Load Random text error!";
     }
 
-    public void saveFile(String filename) {
-        con = dbConnection.getConnection();
-        Statement statement = null;
-        String sql = "INSERT INTO record VALUES(NULL,'"+filename+"')";
-        try {
-            statement = con.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public boolean signup(String name, String pass, String rec) {
         con = dbConnection.getConnection();
         PreparedStatement ps = null;
