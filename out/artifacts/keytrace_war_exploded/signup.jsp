@@ -25,19 +25,19 @@
 
 <div id="sign-up-div" style="padding: 20px; margin: 20px; width: 30%; border: solid 2px #eee">
   <form >
-    <div id="alert-has" class="alert alert-danger" role="alert" hidden>用户名已被注册！</div>
+    <div id="alert-dan" class="alert alert-danger" role="alert" hidden></div>
     <div id="alert-suc" class="alert alert-success" role="alert" hidden>注册成功！正在跳转...</div>
 
     <div class="form-group">
       <label for="input-name">用户名</label>
-      <input type="text" class="form-control" id="input-name" placeholder="用户名">
+      <input type="text" class="form-control" id="input-name" placeholder="3位以上用户名">
     </div>
 
     <div class="form-group">
       <label for="input-pass1">密码</label>
       <input autocomplete="false"
              onkeydown="keyAction(0,0)" onkeyup="keyAction(1,0)"
-             type="password" class="form-control" id="input-pass1" placeholder="密码">
+             type="password" class="form-control" id="input-pass1" placeholder="6位以上密码">
     </div>
 
     <div class="form-group">
@@ -47,7 +47,7 @@
               type="password" class="form-control" id="input-pass2" placeholder="确认密码">
     </div>
 
-    <input type="button" id="btn-signup" class="btn btn-primary" value="注册并学习" />
+    <input type="button" id="btn-signup" class="btn btn-primary" value="注册" />
     <a href="toLogin">已注册？</a>
   </form>
 </div>
@@ -59,48 +59,69 @@
 </div>
 
 <script>
+
+  var validate = function() {
+      var username = $("#input-name").val();
+      var pass1 = $("#input-pass1").val();
+      var pass2 = $("#input-pass2").val();
+      if(username.length<3 || username.length>12 || !username.match("[a-zA-Z0-9_]+")){
+          error("用户名不合法！");
+          return false;
+      }
+      if(pass1.length<6 || pass1.length>20 || !pass1.match("[a-zA-Z0-9]+")){
+          error("密码至少6位");
+          return false;
+      }
+      if(pass2!=pass1){
+          error("两次密码不一致！");
+          return false;
+      }
+      return true;
+  }
+
+  var error = function (info) {
+      var obj = $("#alert-dan");
+      obj.html(info);
+      obj.show();
+      setTimeout(function () {
+          obj.hide();
+          window.location.href = "toSignup";
+      },2000);
+  }
     $(document).ready(function () {
         $("#input-name").blur(function () {
           $.post("hasUser",
               {user_name:$(this).val(),},
           function (result) {
-              alert(result);
               if(result=="true") {
-                alert("用户名已存在");
-                window.location.href="toSignup";
+                error("用户名已存在！");
               }
           });
         });
         
         $("#btn-signup").click(function () {
-            var pass1 = $("#input-pass1").val();
-            var pass2 = $("#input-pass2").val();
-            if(pass1==pass2) {
-                var res = "";
-                for(var i=0;i<MAXN;i++)
-                    res+=record[i];
-                $.post("signup",
-                    {
-                        user_name:$("#input-name").val(),
-                        user_pass:pass1,
-                        record:res,
-                    },
-                    function (data) {
-                        if(data.length>0) {
-                            $("#alert-suc").show();
-                            setTimeout(function () {
-                                window.location.href = "toLogin";
-                            },2000);
-                        }
-                        else {
-                            $("#alert-has").show();
-                            setTimeout(function () {
-                                window.location.href = "toSignup";
-                            },2000)
-                        }
+            if(!validate()) return;
+            var res = "";
+            for(var i=0;i<MAXN;i++)
+                res+=record[i];
+            $.post("signup",
+                {
+                    user_name:$("#input-name").val(),
+                    user_pass:$("#input-pass1").val(),
+                    record:res,
+                },
+                function (data) {
+                    if(data.length>0) {
+                        $("#alert-suc").show();
+                        setTimeout(function () {
+                            window.location.href = "toLogin";
+                        },2000);
                     }
-                );
-            }
+                    else {
+                        error("未知错误，请重试！");
+                    }
+                }
+            );
         })
     })
 

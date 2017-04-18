@@ -26,8 +26,7 @@
 
 <div id="login-div" style="padding: 20px; margin: 20px; width: 30%; border: solid 2px #eee" >
   <form >
-    <div id="alert-no-exist" class="alert alert-danger" role="alert" hidden>用户名不存在！</div>
-    <div id="alert-pass-error" class="alert alert-danger" role="alert" hidden>密码错误！</div>
+    <div id="alert-pass-error" class="alert alert-danger" role="alert" hidden>用户名或密码错误！</div>
     <div id="alert-pass-result" class="alert alert-success" role="alert" hidden></div>
 
     <div class="form-group">
@@ -41,7 +40,7 @@
     </div>
 
     <input id="btn-login" class="btn btn-primary" value="登录" />
-
+    <a href="toLogin">再试一次</a>
   </form>
 </div>
 
