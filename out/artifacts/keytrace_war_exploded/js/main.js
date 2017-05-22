@@ -2,19 +2,18 @@
  * Created by zhao on 2017/4/17.
  */
 var record = ["key,ms,type\n","key,ms,type\n"];
-var ab_pre = [-1,-1];
 var re_pre = [-1,-1];
+var d_pre = [-1,-1];
 
-var filter = function (ms,t) {
-    var ans = ms - ab_pre[t] + re_pre[t];
-    if(ms <= ab_pre[t]) {
-        ans += 60000;
+var filter = function (d, t) {
+    if(d_pre[t]==-1){
+        d_pre[t]=d;
+        re_pre[t]=0;
+        return 0;
     }
-    if(ab_pre[t] == -1 && re_pre[t] == -1) {
-        ans = 0;
-    }
-    ab_pre[t] = ms;
-    re_pre[t] = ans;
+    var ans = d.getTime() - d_pre[t].getTime()+re_pre[t];
+    d_pre[t]=d;
+    re_pre[t]=ans;
     return ans;
 }
 
@@ -22,9 +21,8 @@ var keyAction = function(a,t) {
     var e = event || window.event || arguments.callee.caller.arguments[0];
     if(e.keyCode==9) return;
     var d = new Date();
-    var str = e.keyCode +","+ filter(d.getSeconds()*1000 + d.getMilliseconds(),t)+','+a+"\n";
-    var newspan = $("<span></span><br />").text(str);
-    $("#show-head").append(newspan);
+    var str = e.keyCode +","+ filter(d,t)+','+a+"\n";
+    // console.log(str);
     record[t] += str;
     if(a==1) updateText(e);
 }
@@ -49,23 +47,6 @@ var updateText = function (event) {
         $(span[1]).text("");
     }
 }
-
-/*    var downloadFile = function (record) {
- var res = "";
- record.forEach(function (v) {res+=v;})
- $.post("downloadFile",
- {
- ran:$("#random-key").val(),
- record:res,
- },
- function (data) {
- if(data.length > 0) {
- alert("保存成功！");
- window.location.href = "/keytrace";
- }
- }
- );
- }*/
 
 var load_random_text = function (num) {
     var res = null;

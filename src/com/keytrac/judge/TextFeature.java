@@ -7,11 +7,15 @@ package com.keytrac.judge;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 用以封装为了表示特征的几个变量，设计这个包装类。
+ * 主要功能是用于将特征从PeopleText的getFeature送入到TextJudger的compare里
+ */
 class TextFeature {
-    private Map<Integer, Float> press;
-    private Map<String, Float> flight;
-    private Map<Integer, Integer> pressTimes;
-    private Map<String, Integer> flightTimes;
+    private Map<Integer, Float> press; //按键持续时间的map，第一个整型是键盘码，第二个浮点数是平均时间
+    private Map<String, Float> flight;//飞跃时间的map，第一个字符串是后-前的键盘码，例如"79-23",第二个是平均时间
+    private Map<Integer, Integer> pressTimes;//记录按键对应次数
+    private Map<String, Integer> flightTimes;//记录飞跃事件对应的次数
 
     public TextFeature() {
         press = new HashMap<>();
@@ -60,7 +64,7 @@ class TextFeature {
         sb.append("flight: ");
         for (String i : flight.keySet()
                 ) {
-            sb.append(i+":" + flight.get(i) + " ");
+            sb.append(i + ":" + flight.get(i) + " ");
         }
         return sb.toString();
     }

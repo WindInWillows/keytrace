@@ -95,7 +95,6 @@ public class KeyTrac extends ActionSupport{
 
     public String login() throws Exception {
         result = dao.login(user_name,user_pass,record);
-//        System.out.println(record);
         return "success";
     }
 

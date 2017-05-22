@@ -15,43 +15,45 @@
     <schema id="9" parent="1" name="sakila"/>
     <schema id="10" parent="1" name="sys"/>
     <schema id="11" parent="1" name="world"/>
-    <table id="12" parent="2" name="random_text"/>
-    <table id="13" parent="2" name="user"/>
-    <column id="14" parent="12" name="id">
+    <schema id="12" parent="1" name="company"/>
+    <schema id="13" parent="1" name="graduate"/>
+    <table id="14" parent="2" name="random_text"/>
+    <table id="15" parent="2" name="user"/>
+    <column id="16" parent="14" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="12" name="text">
+    <column id="17" parent="14" name="text">
       <Position>2</Position>
       <DataType>varchar(400)|0</DataType>
     </column>
-    <key id="16" parent="12" name="PRIMARY">
+    <key id="18" parent="14" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="17" parent="13" name="user_id">
+    <column id="19" parent="15" name="user_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="18" parent="13" name="user_name">
+    <column id="20" parent="15" name="user_name">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="13" name="user_pass_hash">
+    <column id="21" parent="15" name="user_pass_hash">
       <Position>3</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="20" parent="13" name="user_pass_record">
+    <column id="22" parent="15" name="user_pass_record">
       <Position>4</Position>
       <DataType>text|0</DataType>
     </column>
-    <key id="21" parent="13" name="PRIMARY">
+    <key id="23" parent="15" name="PRIMARY">
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>

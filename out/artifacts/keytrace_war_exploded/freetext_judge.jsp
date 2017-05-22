@@ -8,56 +8,70 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
-<html>
-
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <script type="text/javascript">
-        var MAXN = 1;
-    </script>
-    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
-    <link rel="stylesheet" href="css/main.css">
+    <title>文本型键盘识别-测试</title>
+    <meta name="description" content="iDea a Bootstrap-based, Responsive HTML5 Template">
+    <meta name="author" content="htmlcoder.me">
+
+    <jsp:include page="head_inc.jsp" />
 </head>
 
 <body>
 
-<div class="jumbotron" style="margin:20px; width: 80%;">
-    <h1>KeyTrace</h1>
-    <p>请在下面的文本框中输入！</p>
+<div class="page-wrapper">
+    <jsp:include page="header.jsp" />
+
+    <div class="page-intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home pr-10"></i><a href="/index.jsp">主页</a></li>
+                        <<li class="active"><a href="toFreetext.action">文本型键盘识别</a></li>
+                        <li class="active">测试</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="main-container" alignment="center">
+        <div class="container">
+            <div class="row">
+
+                <div id="free-text-div" style="margin: 0 auto; border: solid 2px #eee; width: 80%; padding: 10px;" >
+                    <div id="judge-result" class="alert alert-success" role="alert" hidden></div>
+
+                    <p class="random-text" ><span class="entered"></span><span class="unentered"></span></p>
+                    <textarea class="input-area" style="width: 100%; height: 200px; ime-mode: disabled" id="text-input0" onkeydown="keyAction(0,0)" onkeyup="keyAction(1,0)" <%--onpaste="return false;" --%>></textarea>
+                    <br /><br />
+                    <button type="button" class="btn btn-primary" id="judge-btn">提交</button>
+                    <br />
+                </div>
+            </div>
+            <br>
+            <p style="text-align: center">
+                <a href="toSignup.action" class="btn btn-white margin-top-clear">体验密码型键盘识别</a>
+            </p>
+        </div>
+    </section>
+
+    <jsp:include page="footer.jsp" />
+
 </div>
+<!-- page-wrapper end -->
 
-
-<div id="judge-result" class="alert alert-success" role="alert" hidden></div>
-
-<div id="freetext-judge-div" style="margin: 20px; border: solid 2px #eee; width: 80%; padding: 10px;" >
-    <p class="random-text" ><span class="entered"></span><span class="unentered"></span></p>
-    <textarea class="input-area" style="ime-mode: disabled" id="text-input0" rows="8" cols="140"  onkeydown="keyAction(0,0)" onkeyup="keyAction(1,0)" <%--onpaste="return false;"--%>></textarea>
-    <br /><br />
-    <button type="button" class="btn btn-primary" id="judge-btn">提交</button>
-    <br />
-</div>
-
-
-<div class="show-div" style="margin: 20px;">
-  <span id="show-head">
-    键码 毫秒 类型<br />
-  </span>
-</div>
-
-
-
+<!-- zhaoge-->
 <script type="text/javascript">
 
     var judgeText = function (rec) {
         var res = "";
         for(var i=0;i<MAXN;i++)
             res+=rec[i];
-
         $.post("judgeText",
             {
                 record:res,
@@ -90,10 +104,10 @@
 
     });
 </script>
-
-
-</div>
-
+<script type="text/javascript">
+    var MAXN = 1;
+</script>
+<!--end-->
+<script src="js/main.js"></script>
 </body>
-
 </html>

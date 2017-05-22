@@ -22,8 +22,7 @@ var keyAction = function(a,t) {
     if(e.keyCode==9) return;
     var d = new Date();
     var str = e.keyCode +","+ filter(d,t)+','+a+"\n";
-    var newspan = $("<span></span><br />").text(str);
-    $("#show-head").append(newspan);
+    // console.log(str);
     record[t] += str;
     if(a==1) updateText(e);
 }

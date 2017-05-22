@@ -1,8 +1,9 @@
 package com.keytrac.dao;
 
+import com.keytrac.judge.Postman;
+
 import java.sql.*;
 import java.util.Random;
-import java.util.StringTokenizer;
 
 /**
  * Created by zhao on 2017/3/10.
@@ -62,13 +63,11 @@ public class Dao {
     }
 
     private float comparePass(String a, String b, String pass) {
-
-        return 98.0f;
+        return Postman.comparePass(a,b,pass);
     }
 
     private float compareText(String a, String b) {
-
-        return 98.0f;
+        return Postman.compareText(a,b);
     }
 
     public String login(String user_name, String user_pass, String pass_record) {
@@ -84,17 +83,18 @@ public class Dao {
             if (rs.next()) {
                 String pass_rec = rs.getString("user_pass_record");
                 String pass = rs.getString("user_pass_hash");
-                double a = comparePass(pass_record,pass_rec, pass);
-                res += a;
+                double a = 100 * comparePass(pass_record,pass_rec, pass);
+                res += String.format("%.2f",a);;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return res;
     }
 
     public String judgeText(String a, String b) {
-        return ""+compareText(a,b);
+        return String.format("%.2f",100 * compareText(a, b));
     }
 
     public String hasUser(String user_name) {
