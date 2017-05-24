@@ -24,7 +24,7 @@
       <div class="row">
         <div class="col-md-12">
           <ol class="breadcrumb">
-            <li><i class="fa fa-home pr-10"></i><a href="/index.jsp">主页</a></li>
+            <li><i class="fa fa-home pr-10"></i><a href="index.jsp">主页</a></li>
             <li class="active"><a href="toSignup.action">密码型键盘识别</a></li>
             <li class="active">测试</li>
           </ol>
@@ -91,7 +91,7 @@
                             $("#alert-pass-error").hide();
                         }, 2000);
                     } else {
-                        $("#alert-pass-result").html("登录成功！匹配率" + res + "%");
+                        $("#alert-pass-result").html("登录成功！匹配率:" + res + "%!");
                         $("#alert-pass-result").show();
                     }
                 })

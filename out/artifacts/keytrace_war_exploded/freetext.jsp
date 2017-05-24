@@ -24,7 +24,7 @@
       <div class="row">
         <div class="col-md-12">
           <ol class="breadcrumb">
-            <li><i class="fa fa-home pr-10"></i><a href="/index.jsp">主页</a></li>
+            <li><i class="fa fa-home pr-10"></i><a href="index.jsp">主页</a></li>
             <li class="active"><a href="toFreetext.action">文本型键盘识别</a></li>
             <li class="active">训练</li>
           </ol>

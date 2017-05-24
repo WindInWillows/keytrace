@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017 Ziqi Yuan All rights reserved
+ */
+
 package com.keytrac.judge;
 
 public class PwdJudger {

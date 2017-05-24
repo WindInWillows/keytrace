@@ -130,4 +130,12 @@ public class KeyTrac extends ActionSupport{
         result = dao.hasUser(user_name);
         return "success";
     }
+
+    private String filter(String rec) {
+        String[] rec_arr = rec.split("\n");
+        boolean[] flag = new boolean[rec_arr.length];
+        if (rec_arr.length<=1) return rec;
+
+        return null;
+    }
 }

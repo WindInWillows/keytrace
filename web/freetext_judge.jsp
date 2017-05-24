@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-home pr-10"></i><a href="/index.jsp">主页</a></li>
+                        <li><i class="fa fa-home pr-10"></i><a href="index.jsp">主页</a></li>
                         <<li class="active"><a href="toFreetext.action">文本型键盘识别</a></li>
                         <li class="active">测试</li>
                     </ol>
@@ -77,7 +77,7 @@
                 record:res,
             },
             function (data) {
-                $("#judge-result").html(data);
+                $("#judge-result").html("匹配率："+data+"%!");
                 $("#judge-result").show();
             });
     }

@@ -11,6 +11,8 @@ import java.util.Random;
 public class Dao {
     private static DBConnection dbConnection = new DBConnection();
     private static Connection con = null;
+    private final double PASS_FACT = 0.85;
+    private final double TEXT_FACT = 0.84;
 
     private int getTextNum() {
         String sql = "SELECT count(*) FROM keytrace.random_text;";
@@ -62,12 +64,23 @@ public class Dao {
         }
     }
 
+    private float map(float res, double fact) {
+        if(res<fact) {
+            res = (float) Math.pow(res,4);
+        } else {
+            res = (float) Math.sqrt(res);
+        }
+        return res;
+    }
+
     private float comparePass(String a, String b, String pass) {
-        return Postman.comparePass(a,b,pass);
+        float res = Postman.comparePass(a,b,pass);
+        return map(res, PASS_FACT);
     }
 
     private float compareText(String a, String b) {
-        return Postman.compareText(a,b);
+        float res = Postman.compareText(a,b);
+        return map(res, TEXT_FACT);
     }
 
     public String login(String user_name, String user_pass, String pass_record) {
@@ -94,6 +107,8 @@ public class Dao {
     }
 
     public String judgeText(String a, String b) {
+        System.out.println(a);
+        System.out.println(b);
         return String.format("%.2f",100 * compareText(a, b));
     }
 
