@@ -47,7 +47,7 @@
                     <div id="judge-result" class="alert alert-success" role="alert" hidden></div>
 
                     <p class="random-text" ><span class="entered"></span><span class="unentered"></span></p>
-                    <textarea class="input-area" style="width: 100%; height: 200px; ime-mode: disabled" id="text-input0" onkeydown="keyAction(0,0)" onkeyup="keyAction(1,0)" <%--onpaste="return false;" --%>></textarea>
+                    <textarea class="input-area" style="width: 100%; height: 200px; ime-mode: disabled" id="text-input0" onkeydown="keyAction(0,0)" onkeyup="keyAction(1,0)" onpaste="return false;" ></textarea>
                     <br /><br />
                     <button type="button" class="btn btn-primary" id="judge-btn">提交</button>
                     <br />

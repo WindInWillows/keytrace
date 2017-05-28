@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" build-on-make="true" name="keytrace:war">
-    <output-path>$PROJECT_DIR$/out/artifacts/keytrace_war</output-path>
-    <root id="archive" name="keytrace_war.war">
-      <element id="artifact" artifact-name="keytrace:war exploded" />
-    </root>
-  </artifact>
-</component>

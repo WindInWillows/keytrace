@@ -67,12 +67,12 @@
           <p class="random-text"><span class="entered"></span><span class="unentered"></span></p>
           <textarea class="input-area" style="width: 100%; height: 200px;
           ime-mode:disabled" id="text-input0" onkeydown="keyAction(0,0)"
-                    onkeyup="keyAction(1,0)" <%--onpaste="return false;" --%>></textarea>
+                    onkeyup="keyAction(1,0)" onpaste="return false;" ></textarea>
           <br/><br/>
           <p class="random-text"><span class="entered"></span><span class="unentered"></span></p>
           <textarea class="input-area" style="width: 100%; height: 200px; ime-mode: disabled" id="text-input1"
                     onkeydown="keyAction(0,1)"
-                    onkeyup="keyAction(1,1)" <%--onpaste="return false;"--%>></textarea>
+                    onkeyup="keyAction(1,1)" onpaste="return false;"></textarea>
           <br/><br/>
 
           <button type="button" class="btn btn-primary" id="learn-btn">提交</button>

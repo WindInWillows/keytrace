@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="judge">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/judge.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

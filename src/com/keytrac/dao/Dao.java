@@ -65,11 +65,11 @@ public class Dao {
     }
 
     private float map(float res, double fact) {
-        if(res<fact) {
+/*        if(res<fact) {
             res = (float) Math.pow(res,4);
         } else {
             res = (float) Math.sqrt(res);
-        }
+        }*/
         return res;
     }
 
