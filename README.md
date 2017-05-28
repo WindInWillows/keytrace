@@ -13,4 +13,4 @@
 
 2. 在MySQL中导入项目目录下的keytrace.sql文件，MySQL用户名为root，密码为空即可
 
-也可以访问我们部署好的测试网站：[https://www.keystroke.cn/keytrace](https://www.keystroke.cn/keytrace)
+3. 也可以访问我们部署好的测试网站：[https://www.keystroke.cn/keytrace](https://www.keystroke.cn/keytrace)
