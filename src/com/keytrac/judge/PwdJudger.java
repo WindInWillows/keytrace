@@ -148,26 +148,6 @@ public class PwdJudger {
 //                testFlight[i] = trainFlight[i];
 //            }
 //        }
-        System.out.println("trainPress");
-        for (float i:trainPress
-                ) {
-            System.out.print(" " + i);
-        }
-        System.out.println("\ntestPress");
-        for (float i:testPress
-                ) {
-            System.out.print(" " + i);
-        }
-        System.out.println("\ntrainFlight");
-        for (float i:trainFlight
-                ) {
-            System.out.print(" " + i);
-        }
-        System.out.println("\ntestFlight");
-        for (float i:testFlight
-                ) {
-            System.out.print(" " + i);
-        }
         float times = 0;
         float sum1 = 0;
         float sum2 = 0;

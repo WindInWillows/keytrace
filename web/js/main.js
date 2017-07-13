@@ -16,13 +16,12 @@ var filter = function (d, t) {
     re_pre[t]=ans;
     return ans;
 }
-console.log('key, ms, type');
+
 var keyAction = function(a,t) {
     var e = event || window.event || arguments.callee.caller.arguments[0];
     if(e.keyCode==9) return;
     var d = new Date();
     var str = e.keyCode +","+ filter(d,t)+','+a+"\n";
-    console.log(str);
     record[t] += str;
     if(a==1) updateText(e);
 }
