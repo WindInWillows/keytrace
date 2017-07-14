@@ -51,8 +51,17 @@
                      class="form-control" id="login-pass" placeholder="密码">
             </div>
 
-            <input id="btn-login" class="btn btn-primary" value="登录"/>
-            <a href="toSignup.action">没有账号？</a>
+            <table>
+              <tr>
+                <td>
+                  <input id="btn-login" class="btn btn-primary" value="登录"/>
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>
+                  <a href="toSignup.action">没有账号？</a>
+                </td>
+              </tr>
+            </table>
           </form>
         </div>
       </div>
@@ -91,8 +100,12 @@
                             $("#alert-pass-error").hide();
                         }, 2000);
                     } else {
-                        $("#alert-pass-result").html("登录成功！匹配率:" + res + "%!");
-                        $("#alert-pass-result").show();
+                        //$("#alert-pass-result").html("登录成功！匹配率:" + res + "%!");
+                        //$("#alert-pass-result").show();
+
+                        window.location.href = "toPwdResult";
+                        //location.href="toResult.action?res="+res;
+                        window.sessionStorage["res"]=res;
                     }
                 })
         })
