@@ -77,8 +77,11 @@
                 record:res,
             },
             function (data) {
-                $("#judge-result").html("匹配率："+data+"%!");
-                $("#judge-result").show();
+                //$("#judge-result").html("匹配率："+data+"%!");
+                //$("#judge-result").show();
+
+                window.location.href = "toTextResult";
+                window.sessionStorage["res"]=data;
             });
     }
 

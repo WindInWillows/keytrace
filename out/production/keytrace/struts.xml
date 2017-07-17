@@ -19,6 +19,14 @@
             <result name="success">/login.jsp</result>
         </action>
 
+        <action name="toPwdResult" class="com.keytrac.action.KeyTrac" method="toPwdResult">
+            <result name="success">/pwd_result.jsp</result>
+        </action>
+
+        <action name="toTextResult" class="com.keytrac.action.KeyTrac" method="toTextResult">
+            <result name="success">/text_result.jsp</result>
+        </action>
+
         <action name="toFreetext" class="com.keytrac.action.KeyTrac" method="toFreetext">
             <result name="success">/freetext.jsp</result>
         </action>

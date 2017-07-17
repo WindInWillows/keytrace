@@ -118,6 +118,14 @@ public class KeyTrac extends ActionSupport{
         return "success";
     }
 
+    public String toPwdResult() throws Exception {
+        return "success";
+    }
+
+    public String toTextResult() throws Exception {
+        return "success";
+    }
+
     public String toLogin() throws Exception {
         return "success";
     }
