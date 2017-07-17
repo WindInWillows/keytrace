@@ -59,9 +59,6 @@
 <!-- Custom Scripts -->
 <script type="text/javascript" src="js/custom.js"></script>
 
-<link href="css/jquery.circliful.css" rel="stylesheet" type="text/css" />
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="js/jquery.circliful.min.js"></script>
 
-<script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+<script src="js/d3.v3.min.js" language="JavaScript"></script>
 <script src="js/liquidFillGauge.js" language="JavaScript"></script>
