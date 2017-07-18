@@ -79,26 +79,7 @@ class PwdFeature {
                 ) {
             sb.append(" " + i);
         }
-        sb.append("\nmaxPressTime: ");
-        for (float i : maxPressTime
-                ) {
-            sb.append(" " + i);
-        }
-        sb.append("\nminPressTime: ");
-        for (float i : minPressTime
-                ) {
-            sb.append(" " + i);
-        }
-        sb.append("\nmaxFLightTime: ");
-        for (float i : maxFlightTime
-                ) {
-            sb.append(" " + i);
-        }
-        sb.append("\nminFlightTIme: ");
-        for (float i : minFlightTime
-                ) {
-            sb.append(" " + i);
-        }
+
         return sb.toString();
     }
 }

@@ -126,6 +126,8 @@ public class PwdJudger {
         float flightSimilar;
         PwdFeature trainFeature = PeoplePassword.getFeature(trainList, password);
         PwdFeature testFeature = PeoplePassword.getFeature(test, password);
+//        System.out.println("trainFeature = " + trainFeature);
+//        System.out.println("testFeature = " + testFeature);
         float[] trainPress = trainFeature.getPressTime();
         float[] trainFlight = trainFeature.getFlightTime();
         float[] testPress = testFeature.getPressTime();
@@ -148,27 +150,64 @@ public class PwdJudger {
 //                testFlight[i] = trainFlight[i];
 //            }
 //        }
-        float times = 0;
-        float sum1 = 0;
-        float sum2 = 0;
+        float sumPressTrain=0;
+        float sumPressTest=0;
+        float sumFlightTrain=0;
+        float sumFlightTest = 0;
+        for (int i = 0; i < trainPress.length; i++) {
+            sumPressTrain += trainPress[i];
+            sumPressTest += testPress[i];
+        }
+        for (int i = 0; i < trainFlight.length; i++) {
+            sumFlightTrain += Math.abs(trainFlight[i]);
+            sumFlightTest += Math.abs(testFlight[i]);
+        }
         for (int i = 0; i < testPress.length; i++) {
-            sum1 +=testPress[i];
-            sum2 += trainPress[i];
+            testPress[i] += 3*(sumPressTest - sumPressTrain) / (trainPress.length * sumPressTrain);
         }
-        times = sum2 / sum1;
-        for (int i = 0; i < testPress.length; i++) {
-            testPress[i] *= times;
-        }
-        sum1 = sum2 = 0;
-
         for (int i = 0; i < testFlight.length; i++) {
-            sum1 += testFlight[i];
-            sum2 += trainFlight[i];
+            testFlight[i] += 3*(sumFlightTest - sumFlightTrain) / (trainFlight.length * sumFlightTrain );
         }
-        times = sum2 / sum1;
-        for (int i = 0; i < testFlight.length; i++) {
-            testFlight[i] *= times;
-        }
+//        System.out.println("trainPress = " );
+//        for (int i = 0; i < trainPress.length; i++) {
+//            System.out.print(trainPress[i] + " ");
+//        }
+//        System.out.println("\ntestPress = ");
+//        for (int i = 0; i < testPress.length; i++) {
+//            System.out.print(testPress[i]+ " ");
+//        }
+//        System.out.println("\ntrainFlight = ");
+//        for (int i = 0; i < trainFlight.length; i++) {
+//            System.out.print(trainFlight[i]+ " ");
+//        }
+//        System.out.println("\ntestFlight = ");
+//        for (int i = 0; i < testFlight.length; i++) {
+//            System.out.print(testFlight[i]+ " ");
+//        }
+        /**
+         * 下面这些代码是将两次的总时间拉伸成一致
+         */
+//        float times = 0;
+//        float sum1 = 0;
+//        float sum2 = 0;
+//        for (int i = 0; i < testPress.length; i++) {
+//            sum1 +=testPress[i];
+//            sum2 += trainPress[i];
+//        }
+//        times = sum2 / sum1;
+//        for (int i = 0; i < testPress.length; i++) {
+//            testPress[i] *= times;
+//        }
+//        sum1 = sum2 = 0;
+//
+//        for (int i = 0; i < testFlight.length; i++) {
+//            sum1 += testFlight[i];
+//            sum2 += trainFlight[i];
+//        }
+//        times = sum2 / sum1;
+//        for (int i = 0; i < testFlight.length; i++) {
+//            testFlight[i] *= times;
+//        }
         pressSimilar = PwdJudger.cosSimilar(trainPress,testPress);
         flightSimilar = PwdJudger.cosSimilar(trainFlight,testFlight);
         return pressSimilar * pressWeight + (1 - pressWeight) * flightSimilar;

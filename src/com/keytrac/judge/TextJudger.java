@@ -35,7 +35,7 @@ public class TextJudger {
         this.flightTimeThreshold = 2000;
         this.pressTimeThreshold = 500;
         this.pressTimesThreshold = 1;
-        this.pressWeight = 0.6f;
+        this.pressWeight = 0.4f;
     }
 
     /**

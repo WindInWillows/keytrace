@@ -63,12 +63,57 @@ public class Postman {
                 }
             }
         }
+//                System.out.println("aCharList = ");
+//        for (int i : aCharList
+//                ) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println("\naStateList = ");
+//        for (int i : aStateList
+//                ) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println("\naTimeList = ");
+//        for (int i : aTimeList
+//                ) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println("\nbCharList1 = ");
+//        for (int i : bCharList1
+//                ) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println("\nbStateList1 = ");
+//        for (int i : bStateList1
+//                ) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println("\nbTimeList1 = ");
+//        for (int i : bTimeList1
+//                ) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println("\nbCharList2 = ");
+//        for (int i : bCharList2
+//                ) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println("\nbStateList2 = ");
+//        for (int i : bStateList2
+//                ) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println("\nbTimeList2 = ");
+//        for (int i : bTimeList2
+//                ) {
+//            System.out.print(i + " ");
+//        }
         try {
             PeoplePassword aPwd = new PeoplePassword(aCharList, aStateList, aTimeList);
             PeoplePassword bPwd1 = new PeoplePassword(bCharList1, bStateList1, bTimeList1);
             PeoplePassword bPwd2 = new PeoplePassword(bCharList2, bStateList2, bTimeList2);
             PeoplePassword[] bPwd = {bPwd1, bPwd2};
-            PwdJudger pj = new PwdJudger(0.5f);
+            PwdJudger pj = new PwdJudger(0.3f);
             return pj.compare(bPwd, aPwd, pass);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
