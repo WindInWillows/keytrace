@@ -107,8 +107,6 @@ public class Dao {
     }
 
     public String judgeText(String a, String b) {
-        System.out.println(a);
-        System.out.println(b);
         return String.format("%.2f",100 * compareText(a, b));
     }
 

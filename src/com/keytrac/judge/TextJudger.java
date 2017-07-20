@@ -4,6 +4,7 @@
 
 package com.keytrac.judge;
 
+
 import java.util.ArrayList;
 
 
@@ -175,31 +176,50 @@ public class TextJudger {
 
 
         }
-        float sum1 = 0;
-        float sum2 = 0;
-        for (int i = 0; i < trainPressVec.size(); i++) {
-            sum1 += trainPressVec.get(i);
-            sum2 += testPressVec.get(i);
-        }
-        for (int i = 0; i < testPressVec.size(); i++) {
-            testPressVec.set(i, testPressVec.get(i) * (sum1 / sum2));
-        }
-        sum1 = sum2 = 0;
-        for (int i = 0; i < trainFlightVec.size(); i++) {
-            sum1 += trainFlightVec.get(i);
-            sum2 += testFlightVec.get(i);
-        }
-        for (int i = 0; i < testFlightVec.size(); i++) {
-            testFlightVec.set(i, testFlightVec.get(i) * (sum1 / sum2));
-        }
+//        float sum1 = 0;
+//        float sum2 = 0;
+//        for (int i = 0; i < trainPressVec.size(); i++) {
+//            sum1 += trainPressVec.get(i);
+//            sum2 += testPressVec.get(i);
+//        }
+//        for (int i = 0; i < testPressVec.size(); i++) {
+//            testPressVec.set(i, testPressVec.get(i) * (sum1 / sum2));
+//        }
+//        sum1 = sum2 = 0;
+//        for (int i = 0; i < trainFlightVec.size(); i++) {
+//            sum1 += trainFlightVec.get(i);
+//            sum2 += testFlightVec.get(i);
+//        }
+//        for (int i = 0; i < testFlightVec.size(); i++) {
+//            testFlightVec.set(i, testFlightVec.get(i) * (sum1 / sum2));
+//        }
+        testPressVec = transfer(trainPressVec,testPressVec,3);
+        testFlightVec = transfer(trainFlightVec,testFlightVec,3);
+        testFlightVec2 = transfer(trainFlightVec2,testFlightVec2,5);
+        testFlightVec3 = transfer(trainFlightVec3,testFlightVec3,7);
 
         float pressSimilar = TextJudger.cosSimilar(trainPressVec, testPressVec);
         float flightSimilar = TextJudger.cosSimilar(trainFlightVec, testFlightVec);
         float flightSimilar2 = TextJudger.cosSimilar(trainFlightVec2, testFlightVec2);
         float flightSimilar3 = TextJudger.cosSimilar(trainFlightVec3, testFlightVec3);
+        System.out.println("flightSimilar = " + flightSimilar);
+        System.out.println("flightSimilar2 = " + flightSimilar2);
+        System.out.println("flightSimilar3 = " + flightSimilar3);
+        Mylog.log("trainFlightVec",trainFlightVec);
+        Mylog.log("testFlightVec",testFlightVec);
+        Mylog.log("trainFlightVec2",trainFlightVec2);
+        Mylog.log("testFlightVec2",testFlightVec2);
+        Mylog.log("trainFlightVec3",trainFlightVec3);
+        Mylog.log("testFlightVec3",testFlightVec3);
+
 //        float pressSimilar = TextJudger.weightCosSimilar(trainPressVec,trainPressTimesVec,testPressVec,testPressTimesVec);
 //        float flightSimilar = TextJudger.weightCosSimilar(trainFlightVec,trainFlightTimesVec,testFlightVec,testFlightTimesVec);
-        flightSimilar = (float) Math.pow(flightSimilar * flightSimilar2 * flightSimilar3, 1.0 / 3);
+        if (flightSimilar3!=0) {
+            flightSimilar = (float) Math.pow(flightSimilar * flightSimilar2 * flightSimilar3, 1.0 / 3);
+        }
+        else if (flightSimilar2!=0){
+            flightSimilar = (float) Math.pow(flightSimilar * flightSimilar2, 1.0 / 2);
+        }
         float similar = 0;
         if (trainPressVec.size() > 1 && trainFlightVec.size() > 1) {
             similar = pressWeight * pressSimilar + (1 - pressWeight) * flightSimilar;
@@ -291,6 +311,19 @@ public class TextJudger {
         System.out.println(TextJudger.cosSimilar(a, b));
     }
 
+    private ArrayList<Float> transfer(ArrayList<Float> trainVec , ArrayList<Float> testVec,float lambda){
+        float sumTrain = 0;
+        float sumTest = 0;
+        for (int i = 0; i < trainVec.size(); i++) {
+            sumTrain += Math.abs(trainVec.get(i));
+            sumTest += Math.abs(testVec.get(i));
+        }
+        for (int i = 0; i < testVec.size(); i++) {
+            testVec.set(i,testVec.get(i)+lambda * (sumTest-sumTrain) / (testVec.size() * sumTrain));
+        }
+        return testVec;
+
+    }
     public float getFlightTimesThreshold() {
         return flightTimesThreshold;
     }
