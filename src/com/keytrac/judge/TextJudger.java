@@ -16,13 +16,6 @@ public class TextJudger {
     private final int pressTimesThreshold;
     private final float pressWeight;
 
-    /**
-     * @param flightTimesThreshold
-     * @param flightTimeThreshold
-     * @param pressTimeThreshold
-     * @param pressTimesThreshold
-     * @param pressWeight
-     */
     public TextJudger(int flightTimesThreshold, int flightTimeThreshold, int pressTimeThreshold, int pressTimesThreshold, float pressWeight) {
         this.flightTimesThreshold = flightTimesThreshold;
         this.flightTimeThreshold = flightTimeThreshold;
@@ -39,11 +32,6 @@ public class TextJudger {
         this.pressWeight = 0.4f;
     }
 
-    /**
-     * @param train train data
-     * @param test  test data
-     * @return The similarity between train data and test data. Value from 0 to 1
-     */
     public float compare(PeopleText train, PeopleText test) {
         TextFeature trainTextFeature = PeopleText.getFeature(train);
         TextFeature testTextFeature = PeopleText.getFeature(test);

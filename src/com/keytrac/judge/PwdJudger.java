@@ -10,94 +10,6 @@ public class PwdJudger {
     public PwdJudger(float pressWeight) {
         this.pressWeight = pressWeight;
     }
-
-//    public float compare(PeoplePassword[] trainList, PeoplePassword test, String password) throws IllegalArgumentException {
-//        float pressSimilar = 0;
-//        float flightSimilar = 0;
-//        PwdFeature trainFeature = PeoplePassword.getFeature(trainList, password);
-//        PwdFeature testFeature = PeoplePassword.getFeature(test, password);
-//        float[] trainPress = trainFeature.getPressTime();
-//        float[] trainFlight = trainFeature.getFlightTime();
-//        float[] testPress = testFeature.getPressTime();
-//        float[] testFlight = testFeature.getFlightTime();
-//        float[] varPress = trainFeature.getVarPress();
-//        float[] varFlight = trainFeature.getVarFlight();
-//        float[] maxPress = trainFeature.getMaxPressTime();
-//        float[] minPress = trainFeature.getMinPressTime();
-//        float[] maxFlight = trainFeature.getMaxFlightTime();
-//        float[] minFlight = trainFeature.getMinFlightTime();
-//        float[] pressSimilarList = new float[password.length()];
-//        float[] flightSimilarList = new float[password.length()];
-//        if (trainPress.length != testPress.length || trainFlight.length != testFlight.length) {
-//            throw new IllegalArgumentException("\nmust input the same password!");
-//        }
-////        System.out.println("maxPress ");
-////        for (float i:maxPress
-////             ) {
-////            System.out.println(i);
-////        }
-////        System.out.println("minPress");
-////        for (float i:minPress
-////             ) {
-////            System.out.println(i);
-////        }
-////        System.out.println("maxFlight");
-////        for (float i:maxFlight
-////             ) {
-////            System.out.println(i);
-////        }
-////        System.out.println("minFlight");
-////        for (float i:minFlight
-////             ) {
-////            System.out.println(i);
-////        }
-//        for (int i = 0; i < trainPress.length; i++) {
-//            if (testPress[i] < maxPress[i] && testPress[i] > minPress[i]) {
-//                pressSimilarList[i] = 1;
-//            } else {
-//                if (testPress[i] > maxPress[i]) {
-//                    //pressSimilarList[i] = (float) (Math.pow(Math.E, (-1) * Math.pow(((testPress[i] - maxPress[i]) / (maxPress[i] - minPress[i]))-1, 2))); // Math.sqrt(2 * Math.PI));
-//                    pressSimilarList[i] = (float) (1 / (1+Math.pow(Math.E,(-2) * (maxPress[i] - minPress[i]) / (testPress[i] - maxPress[i]))));
-//                } else {
-//                    //pressSimilarList[i] = (float) (Math.pow(Math.E, (-1) * Math.pow(((minPress[i] - testPress[i]) / (maxPress[i] - minPress[i]))-1, 2))); // Math.sqrt(2 * Math.PI));
-//                    pressSimilarList[i] = (float) (1 / (1+Math.pow(Math.E,(-2) * (maxPress[i] - minPress[i]) / (minPress[i] - testPress[i]))));
-//                }
-//            }
-//        }
-//        for (int i = 0; i < trainFlight.length; i++) {
-//            if (testFlight[i] < maxFlight[i] && testFlight[i] > minFlight[i]) {
-//                flightSimilarList[i] = 1;
-//            } else {
-//                //flightSimilarList[i] = (float) (Math.pow(Math.E, (-1) * Math.pow(testFlight[i] - trainFlight[i], 2) / (2 * varFlight[i])) / (Math.sqrt(varFlight[i]) * Math.sqrt(2 * Math.PI)));
-//                if (testFlight[i] < maxFlight[i]){
-//                    //flightSimilarList[i] = (float) (Math.pow(Math.E, (-1) * Math.pow(((testFlight[i] - maxFlight[i]) / (maxFlight[i] - minFlight[i]))-1, 2))); // Math.sqrt(2 * Math.PI));
-//                    flightSimilarList[i] = (float) (1 / (1+Math.pow(Math.E,(-2) * (maxFlight[i] - minFlight[i]) / (testFlight[i] - maxFlight[i]))));
-//                }
-//                else {
-//                    //flightSimilarList[i] = (float) (Math.pow(Math.E, (-1) * Math.pow(((minFlight[i] - testFlight[i]) / (maxFlight[i] - minFlight[i]))-1, 2))); // Math.sqrt(2 * Math.PI));
-//                    flightSimilarList[i] = (float) (1 / (1+Math.pow(Math.E,(-2) * (maxFlight[i] - minFlight[i]) / (minFlight[i] - minFlight[i]))));
-//                }
-//            }
-//        }
-//        for (int i = 0; i < pressSimilarList.length; i++) {
-//            pressSimilar += pressSimilarList[i];
-//        }
-//        pressSimilar = pressSimilar / pressSimilarList.length;
-//        for (int i = 0; i < flightSimilarList.length; i++) {
-//            flightSimilar += flightSimilarList[i];
-//        }
-//        flightSimilar = flightSimilar / flightSimilarList.length;
-//        for (float i : pressSimilarList
-//                ) {
-//            System.out.println(i);
-//        }
-//        for (float i : flightSimilarList
-//                ) {
-//            System.out.println(i);
-//        }
-//        return pressSimilar * pressWeight + flightSimilar * (1 - pressWeight);
-//    }
-
     private static float cosSimilar(float[] a, float[] b) throws IllegalArgumentException {
         if (a.length != b.length) {
             throw new IllegalArgumentException("Length of vector must equal");
@@ -140,16 +52,6 @@ public class PwdJudger {
             throw new IllegalArgumentException("\nmust input the same password!");
         }
 
-//        for (int i = 0; i < trainPress.length; i++) {
-//            if (Math.abs(testPress[i] - maxPress[i]) < 0.5 * (maxPress[i] - minPress[i]) || Math.abs(minPress[i] - testPress[i]) < 0.5 * (maxPress[i]-minPress[i])){
-//                testPress[i] = trainPress[i];
-//            }
-//        }
-//        for (int i = 0; i < trainFlight.length; i++) {
-//            if (Math.abs(testFlight[i] - maxFlight[i]) < 0.5 * (maxFlight[i] - minFlight[i]) || Math.abs(minFlight[i] - testFlight[i]) < 0.5 * (maxFlight[i] - minFlight[i])){
-//                testFlight[i] = trainFlight[i];
-//            }
-//        }
         float sumPressTrain=0;
         float sumPressTest=0;
         float sumFlightTrain=0;
